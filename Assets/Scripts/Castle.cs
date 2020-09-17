@@ -5,24 +5,20 @@ using TMPro;
 using UnityEngine;
 
 namespace CyberCountry
-{
-    [RequireComponent(typeof(BoxCollider))]
+{    
     public class Castle : MonoBehaviour, IReloaded
     {
         private int _health = 100;
         private TextMeshProUGUI _HealthUI;
         private Coroutine process;
 
-        public IGameManager GameManager
-        {
-            get;set;            
-        }
+        public IGameManager GameManager {get;set;}
 
         private void OnEnable()
         {
             _HealthUI = this.GetComponentInChildren<TextMeshProUGUI>();
             ShowHealth();
-            process = StartCoroutine(Healing());
+            //process = StartCoroutine(Healing());
         }
         
 
@@ -53,7 +49,7 @@ namespace CyberCountry
 
 
 
-        private void Heal()
+        public void Heal()
         {
             Health += 30;
         }
@@ -80,7 +76,7 @@ namespace CyberCountry
         {
             Health = 100;            
             Stop();
-            process = StartCoroutine(Healing());
+            //process = StartCoroutine(Healing());
         }
 
         private float dt;
@@ -91,29 +87,29 @@ namespace CyberCountry
             DetectEnemy();
         }
 
-        private IEnumerator Healing()
-        {
+        //private IEnumerator Healing()
+        //{
 
-            while(true)
-            {
-                if (Health < 100)
-                {
-                    dt += Time.deltaTime;
+        //    while(true)
+        //    {
+        //        if (Health < 100)
+        //        {
+        //            dt += Time.deltaTime;
 
-                    if (dt >= healDelay)
-                    {
-                        Heal();
-                        dt = 0;
-                    }
+        //            if (dt >= healDelay)
+        //            {
+        //                Heal();
+        //                dt = 0;
+        //            }
 
-                }
+        //        }
 
-                yield return null;
-            }
+        //        yield return null;
+        //    }
 
             
 
-        }
+        //}
 
         private void DetectEnemy()
         {
@@ -129,14 +125,7 @@ namespace CyberCountry
                 }
             }
 
-            if(reachedEnemy)
-            {
-                reachedEnemy.ReachedCastle();
-            }
-            else
-            {
-                Debug.Log("No enemy");
-            }            
+            reachedEnemy?.ReachedCastle();       
         }
 
 

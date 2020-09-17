@@ -18,6 +18,8 @@ namespace CyberCountry
         private ITrackerService _trackerService;
         private IUserInterface _userInterface;
 
+        private AudioSource _sound;
+
         private void Awake()
         {
             _trackerService = GetComponent<ITrackerService>(); //TODO: (bad) В случае если не используете внедрение зависимостей
@@ -35,6 +37,8 @@ namespace CyberCountry
             _castle.GameManager = this;
 
             _tower = (Tower)FindObjectOfType(typeof(Tower));
+
+            _sound = FindObjectOfType<AudioSource>();
         }
 
         private void Update()
@@ -50,9 +54,11 @@ namespace CyberCountry
             print("Create tree");
         }
 
-        public void SwitchSound(bool isOn)
+        public void SwitchSound()
         {
             print("SwitchSound");
+
+            _sound.volume = _sound.volume > 0 ? 0 : 1;
         }
 
         public void ReloadGame()
@@ -105,6 +111,9 @@ namespace CyberCountry
             return _trackerService.GetPortalPos();
         }
 
-        
+        public void HealCastle()
+        {
+            _castle.Heal();
+        }
     }
 }

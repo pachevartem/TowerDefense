@@ -28,6 +28,10 @@ namespace CyberCountry
                     case "play":
                         _play = o.GetComponent<Button>();
                         _play.onClick.AddListener(StartGame);
+                        _play.onClick.AddListener(() => {
+                            _play.gameObject.SetActive(false);
+                            _reload.gameObject.SetActive(true);
+                        });                        
                         break;
                     case "sound":
                         _sound = o.GetComponent<Button>();
@@ -36,6 +40,7 @@ namespace CyberCountry
                     case "reload":
                         _reload = o.GetComponent<Button>();
                         _reload.onClick.AddListener(ReloadGame);
+                        _reload.gameObject.SetActive(false);
                         break;
                     case "tree":
                         _createTree = o.GetComponent<Button>();
@@ -63,18 +68,22 @@ namespace CyberCountry
 
         public void SwitchSound()
         {
+            _manager.SwitchSound();
         }
 
         public void ReloadGame()
         {
+            _manager.ReloadGame();
         }
 
         public void CreateTree()
         {
+
         }
 
         public void HealCastle()
         {
+            _manager.HealCastle();
         }
 
         public IUserInterface Inject(IGameManager manager)
