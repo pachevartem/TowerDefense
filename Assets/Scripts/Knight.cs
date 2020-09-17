@@ -13,7 +13,7 @@ namespace CyberCountry
         {
             base.OnEnable();
             _agent = GetComponent<NavMeshAgent>();
-            _anim = GetComponent<Animator>();
+            _anim = GetComponent<Animator>();go
         }
 
         public override void Run()
@@ -29,6 +29,11 @@ namespace CyberCountry
         public override void Stop()
         {
             Debug.Log($"{this.GetType()} stopped!");
+        }
+
+        void Update()
+        {
+            _anim.SetFloat("speed", _agent.velocity.magnitude);
         }
     }
 }

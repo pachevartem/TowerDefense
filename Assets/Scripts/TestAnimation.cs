@@ -20,12 +20,12 @@ public class TestAnimation : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-
+        print(agent.velocity.magnitude);
+        anim.SetFloat("speed", agent.velocity.magnitude);
         if (Physics.Raycast(ray, out hit, 100))
         {       
             Debug.DrawLine(ray.origin, hit.point);
             agent.SetDestination(hit.point);
-
         }
 
     }
