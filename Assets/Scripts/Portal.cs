@@ -36,10 +36,10 @@ namespace CyberCountry
 
         }
 
-        void CreateEnemy()
+        void CreateEnemy(Vector3 spawnPosition)
         {
             var k = Enemy.CreateEnemy(_gameManager, Enemies[0], typeof(Knight),
-                _healthWave); // использование фабрики для комбинации свойств
+                _healthWave, spawnPosition); // использование фабрики для комбинации свойств
             print(k);
             k.Run();
 
@@ -57,7 +57,7 @@ namespace CyberCountry
 
                 if (_dtSpawn>_delaySpawn)
                 {
-                    CreateEnemy();
+                    CreateEnemy(this.transform.position);
                     _dtSpawn = 0;
                 }
 

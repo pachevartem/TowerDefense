@@ -39,14 +39,9 @@ namespace CyberCountry
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (_trackerService.IsCastleTracking() || _trackerService.IsTowerTracking() || _trackerService.IsPortalTracking())
             {
                 PauseGame();
-            }
-
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                ReloadGame();
             }
         }
 
@@ -72,8 +67,11 @@ namespace CyberCountry
 
         public void StartGame()
         {
-            print("StartGame");
-            _portal.Play(this);
+            if (_trackerService.IsCastleTracking() && _trackerService.IsTowerTracking() && _trackerService.IsPortalTracking())
+            {
+                print("StartGame");
+                _portal.Play(this);
+            }
         }
 
         public void EndGame()

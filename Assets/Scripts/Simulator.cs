@@ -11,9 +11,9 @@ namespace CyberCountry
         public GameObject TowerTarget;
         public GameObject PortalTarget;
 
-        public bool IsPortal;
-        public bool IsCastle;
-        public bool IsTower;
+        private bool IsPortal = true;
+        private bool IsCastle = true;
+        private bool IsTower = true;
         
         public Transform GetCastlePos()
         {
@@ -31,7 +31,7 @@ namespace CyberCountry
         }
 
         public bool IsCastleTracking()
-        {
+        {            
             return IsCastle;
         }
 

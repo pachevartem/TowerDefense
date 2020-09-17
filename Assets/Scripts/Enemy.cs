@@ -16,10 +16,13 @@ namespace CyberCountry
         public static Enemy Target; //TODO: может быть много башень.
         public static HashSet<Enemy> All = new HashSet<Enemy>();
         
-        public static Enemy CreateEnemy(IGameManager gameManager, GameObject EnemyModel, Type e, int health) // Вот это и есть фабричный метод
+        public static Enemy CreateEnemy(IGameManager gameManager, GameObject EnemyModel, Type e, int health, Vector3 spawnPoint) // Вот это и есть фабричный метод
         {
             var t = Instantiate(EnemyModel);
             var r = (Enemy)t.AddComponent(e);
+
+            r.transform.position = spawnPoint;
+
             r._gameManager = gameManager;
             r.Health = health;
             r._startHealth = health;

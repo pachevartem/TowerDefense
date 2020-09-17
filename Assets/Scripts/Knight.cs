@@ -13,7 +13,7 @@ namespace CyberCountry
         {
             base.OnEnable();
             _agent = GetComponent<NavMeshAgent>();
-            _anim = GetComponent<Animator>();go
+            _anim = GetComponent<Animator>();
         }
 
         public override void Run()
