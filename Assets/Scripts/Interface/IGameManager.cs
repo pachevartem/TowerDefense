@@ -8,6 +8,8 @@ namespace CyberCountry
         void SwitchSound(bool isOn);
         void ReloadGame();
         void StartGame();
+        void EndGame();
+        void PauseGame();
         
 
         Transform CastlePos();

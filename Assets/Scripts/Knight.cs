@@ -22,5 +22,10 @@ namespace CyberCountry
         {
             Health = 100; //TODO: сохранить изначально.
         }
+
+        public override void Stop()
+        {
+            Debug.Log($"{this.GetType()} stopped!");
+        }
     }
 }

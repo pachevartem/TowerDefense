@@ -17,14 +17,24 @@ namespace CyberCountry
         
         private IGameManager _gameManager;
 
+        private Coroutine process;
+
         public void Play(IGameManager gameManager)
         {
-            _gameManager = gameManager;
-            CreateEnemy();
-            
-            StartCoroutine(UpdatePortal());
+            _gameManager = gameManager;                        
+            process = StartCoroutine(UpdatePortal());
         }
         
+
+        public void Stop()
+        {
+            if(process!=null)
+            {
+                StopCoroutine(process);
+                process = null;
+            }
+
+        }
 
         void CreateEnemy()
         {
@@ -70,6 +80,11 @@ namespace CyberCountry
             LevelUpEnemy();
             _timetPortal = 0;
             _healthWave = 100;
+            if(process!=null)
+            {
+                StopCoroutine(process);                
+            }
+            process = StartCoroutine(UpdatePortal());
         }
     }
 }

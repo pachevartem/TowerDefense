@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
@@ -27,18 +28,35 @@ namespace CyberCountry
             All.Add(r);
             return r;
         }
-        
-        
+
+        public static void StopEnemies()
+        {
+            Target = null;
+            List<Enemy> enemies = All.ToList();
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                enemies[i].Stop();
+                Destroy(enemies[i].gameObject);
+            }
+            All.Clear();
+        }
+
+
+
         protected int _health;
         private Slider _slider;
         private TextMeshProUGUI _HealthUI;
 
         protected IGameManager _gameManager;
 
+        #region Abstract methods
         public abstract void Run();
         public abstract void ReloadGame();
-        
-        
+        public abstract void Stop();
+
+        #endregion
+
+       
 
         public virtual void OnEnable()
         {
@@ -55,12 +73,11 @@ namespace CyberCountry
                 {
                     print("DieEvent - "+ idTower);
                     Tower.Frags(idTower);
-                    All.Remove(this);
-                    if (Target==this)
+                    if (Target == this)
                     {
                         Target = null;
                     }
-                    Destroy(gameObject);
+                    Termination();
                 }
                 else
                 {
@@ -79,6 +96,16 @@ namespace CyberCountry
             
         }
 
+        public void ReachedCastle()
+        {
+            Termination();
+        }
+
+        private void Termination()
+        {
+            All.Remove(this);
+            Destroy(gameObject);            
+        }
         
     }
 }

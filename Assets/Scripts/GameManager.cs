@@ -17,6 +17,7 @@ namespace CyberCountry
         
         private ITrackerService _trackerService;
         private IUserInterface _userInterface;
+
         private void Awake()
         {
             _trackerService = GetComponent<ITrackerService>(); //TODO: (bad) В случае если не используете внедрение зависимостей
@@ -29,13 +30,23 @@ namespace CyberCountry
             _userInterface = ui.Inject(this);
            
             _portal = (Portal) FindObjectOfType(typeof(Portal));
+
+            _castle = (Castle)FindObjectOfType(typeof(Castle));
+            _castle.GameManager = this;
+
+            _tower = (Tower)FindObjectOfType(typeof(Tower));
         }
 
         private void Update()
         {
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                
+                PauseGame();
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                ReloadGame();
             }
         }
 
@@ -52,6 +63,11 @@ namespace CyberCountry
         public void ReloadGame()
         {
             print("ReloadGame");
+            Enemy.StopEnemies();
+            _portal.ReloadGame();
+            _castle.ReloadGame();
+            _tower.ReloadGame();
+            
         }
 
         public void StartGame()
@@ -59,7 +75,22 @@ namespace CyberCountry
             print("StartGame");
             _portal.Play(this);
         }
-        
+
+        public void EndGame()
+        {
+            print("EndGame");
+            _portal.Stop();
+            _castle.Stop();
+            Enemy.StopEnemies();
+
+        }
+
+        public void PauseGame()
+        {
+            print("StopGame");
+            Time.timeScale = Time.timeScale == 1 ? 0 : 1;
+
+        }
 
         public Transform CastlePos()
         {
@@ -75,5 +106,7 @@ namespace CyberCountry
         {
             return _trackerService.GetPortalPos();
         }
+
+        
     }
 }
