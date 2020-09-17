@@ -121,7 +121,10 @@ namespace CyberCountry
         public void ReloadGame()
         {
             ChangeModel(1);
-            Damage = 30;
+            Damage = 55;
+            dt = 0;
+            ShowDamage();
+            EnemysList.Clear();
         }
 
 
