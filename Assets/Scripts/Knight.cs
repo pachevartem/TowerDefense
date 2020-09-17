@@ -4,13 +4,16 @@ using UnityEngine.AI;
 namespace CyberCountry
 {
     
+    
     public class Knight: Enemy
     {
+        private Animator _anim;
         private NavMeshAgent _agent;
         public override void OnEnable()
         {
             base.OnEnable();
             _agent = GetComponent<NavMeshAgent>();
+            _anim = GetComponent<Animator>();
         }
 
         public override void Run()
