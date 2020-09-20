@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace CyberCountry
 {
@@ -43,10 +44,12 @@ namespace CyberCountry
 
         private void Update()
         {
-            if (_trackerService.IsCastleTracking() || _trackerService.IsTowerTracking() || _trackerService.IsPortalTracking())
+            if (!_trackerService.IsCastleTracking() || !_trackerService.IsTowerTracking() || !_trackerService.IsPortalTracking())
             {
                 PauseGame();
             }
+
+           
         }
 
         public void CreateTree()
@@ -76,6 +79,7 @@ namespace CyberCountry
             if (_trackerService.IsCastleTracking() && _trackerService.IsTowerTracking() && _trackerService.IsPortalTracking())
             {
                 print("StartGame");
+                Time.timeScale = 1;
                 _portal.Play(this);
             }
         }
@@ -92,8 +96,7 @@ namespace CyberCountry
         public void PauseGame()
         {
             print("StopGame");
-            Time.timeScale = Time.timeScale == 1 ? 0 : 1;
-
+            Time.timeScale = 0;
         }
 
         public Transform CastlePos()

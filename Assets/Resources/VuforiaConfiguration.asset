@@ -17,7 +17,7 @@ MonoBehaviour:
     ufoLicenseKey: QVRHd0NzNy8vLy8vQUFBQUtGcVNtWEJDTVVDRG56d0I0OHhNU1R5R3k1RkJNeXpkdmpKYjJRNmtSdmswaEF3MWpoZjNrTzRleGVURWU5dUN0Z2p2OXNaS1Q1S2ZrbGtHZC9XRkRKMng2dDJrZmc3dUIvejgwMEVOWE5MRVBmWEdLMkZaeFdWMGJ6UFVObktnZjNOMlRER25raEd1MFhBSzJWZnFnTWR0WGJuNVR3czljcjh3RGFmMzBsdWYwRTBJMWJ1aVoyY2NKSTlGR09xNkNaODdpMXdSc3hXTEJqRVpLMTV6SVB4TktkcVZjc0dVeFhCdlJOZk5YenJVNFNGam5oMkl3dzJNclh4RHpsVGlZWldvd1M5S1FqRmkwNmlNZHdHZjM3SXBlN1Fta2FreTRQV2tLYld0QXZqL1lJOGRWcGZKbThOaUo0VTk2VDdlY0JYQ3NQb2lRVGRIbUVZM2VzdEtVSGxFMk1FMXBHekdHeGlTWGpZVmpweDk=
     delayedInitialization: 0
     cameraDeviceModeSetting: -1
-    maxSimultaneousImageTargets: 1
+    maxSimultaneousImageTargets: 3
     maxSimultaneousObjectTargets: 1
     useDelayedLoadingObjectTargets: 0
     modelTargetRecoWhileExtendedTracked: 1
@@ -39,6 +39,6 @@ MonoBehaviour:
     autoInitTracker: 0
     autoStartTracker: 0
   webcam:
-    deviceNameSetInEditor: 
+    deviceNameSetInEditor: USB2.0 Camera
     turnOffWebCam: 0
     renderTextureLayer: 30

@@ -116,8 +116,9 @@ namespace CyberCountry
             Enemy reachedEnemy = null;
 
             foreach (Enemy enemy in Enemy.All)
-            {
-                if(Vector3.Distance(this.transform.position, enemy.transform.position)<0.1f)
+            {                
+
+                if(Vector3.Distance(this.transform.position, enemy.transform.position)<0.5f) //TODO: Magic number
                 {
                     reachedEnemy = enemy;
                     Damage(10);
