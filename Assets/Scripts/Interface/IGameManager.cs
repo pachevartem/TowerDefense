@@ -7,9 +7,10 @@ namespace CyberCountry
         void CreateTree();
         void SwitchSound();
         void ReloadGame();
-        void StartGame();
+        bool StartGame();
         void EndGame();
         void PauseGame();
+        void ResumeGame();
 
         void HealCastle();
         

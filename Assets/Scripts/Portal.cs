@@ -54,10 +54,9 @@ namespace CyberCountry
                 _timetPortal += Time.deltaTime;
                 _dtSpawn += Time.deltaTime;
                 yield return null;
-                Debug.Log("hhhhhllllllllllllllllllllh");
+                
                 if (_dtSpawn>_delaySpawn)
-                {
-                    Debug.Log("hhhhhh");
+                {                
                     CreateEnemy(this.transform.position);
                     _dtSpawn = 0;
                 }

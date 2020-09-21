@@ -29,8 +29,7 @@ namespace CyberCountry
                         _play = o.GetComponent<Button>();
                         _play.onClick.AddListener(StartGame);
                         _play.onClick.AddListener(() => {
-                            _play.gameObject.SetActive(false);
-                            _reload.gameObject.SetActive(true);
+                            
                         });                        
                         break;
                     case "sound":
@@ -63,7 +62,11 @@ namespace CyberCountry
 
         public void StartGame()
         {
-            _manager.StartGame();
+            if(_manager.StartGame())
+            {
+                _play.gameObject.SetActive(false);
+                _reload.gameObject.SetActive(true);
+            }
         }
 
         public void SwitchSound()

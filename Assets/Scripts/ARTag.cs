@@ -9,7 +9,7 @@ using Vuforia;
 namespace Assets.Scripts
 {    
 
-    public class VuforiaTag: MonoBehaviour
+    public class ARTag: MonoBehaviour
     {        
         public string TrackingObjID;
     }

@@ -11,10 +11,12 @@ namespace Assets.Scripts
     public class VuforiaCustomTrackAdapter : ITrackableEventHandler
     {
 
-        private VuforiaTag arTrackInfo;
-        private TrackableBehaviour trackController;        
+        private ARTag arTrackInfo;
+        private TrackableBehaviour trackController;
 
-        public VuforiaCustomTrackAdapter(VuforiaTag arTrackInfo, TrackableBehaviour trackController)
+        public event Action TrackingResumed = () => { Debug.Log("Vuforia tracked!"); };
+
+        public VuforiaCustomTrackAdapter(ARTag arTrackInfo, TrackableBehaviour trackController)
         {
             this.trackController = trackController;
             this.arTrackInfo = arTrackInfo;
@@ -24,6 +26,8 @@ namespace Assets.Scripts
         public void OnTrackableStateChanged(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus)
         {
             IsTracked = newStatus == TrackableBehaviour.Status.DETECTED || newStatus == TrackableBehaviour.Status.TRACKED || newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED;
+            if ((previousStatus == TrackableBehaviour.Status.LIMITED || previousStatus == TrackableBehaviour.Status.NO_POSE) && IsTracked)
+                TrackingResumed?.Invoke();
         }
 
         public string GetTrackedID()

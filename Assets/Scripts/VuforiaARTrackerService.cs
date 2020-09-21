@@ -17,7 +17,7 @@ namespace CyberCountry
 
         private void Awake()
         {
-            VuforiaTag[] arTags = FindObjectsOfType<VuforiaTag>();
+            ARTag[] arTags = FindObjectsOfType<ARTag>();
 
             trackableObjects = new List<VuforiaCustomTrackAdapter>();
 
@@ -29,12 +29,7 @@ namespace CyberCountry
 
                 trackableObjects.Add(trAdapter);
             }
-        }
-
-
-        public event Action OnMissCastleTracking;
-        public event Action OnMissPortalTracking;
-        public event Action OnMissTowerTracking;
+        }        
 
         public Transform GetCastlePos()
         {
@@ -55,7 +50,6 @@ namespace CyberCountry
         {
             return trackableObjects.Where((x) => x.GetTrackedID() == objId).First().GetArObjPostion();
         }
-
         
         public bool IsCastleTracking()
         {

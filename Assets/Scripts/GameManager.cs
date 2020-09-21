@@ -1,23 +1,32 @@
 using System;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace CyberCountry
 {
+
+    enum GameManagerState
+    {
+        Idle,
+        Running,
+        Pause
+    }
+
     public class GameManager: MonoBehaviour, IGameManager
     {
         public Transform CastleModel;
         public Transform TowerModel;
         public Transform PortalModel;
-       
-        //
+               
         private Portal _portal;
         private Castle _castle;
         private Tower _tower;
         
         private ITrackerService _trackerService;
         private IUserInterface _userInterface;
+        private StateMachine<GameManagerState> stateManager;
 
         private AudioSource _sound;
 
@@ -40,16 +49,50 @@ namespace CyberCountry
             _tower = (Tower)FindObjectOfType(typeof(Tower));
 
             _sound = FindObjectOfType<AudioSource>();
+
+
+            #region Машина состояний для GameManager
+
+            stateManager = new StateMachine<GameManagerState>();
+
+            stateManager.SetStateUpdate(GameManagerState.Running, () =>
+            {
+                if (!_trackerService.IsCastleTracking() || !_trackerService.IsTowerTracking() || !_trackerService.IsPortalTracking())
+                {
+                    PauseGame();
+                    stateManager.ChangeState(GameManagerState.Pause);
+                }
+            });
+
+            stateManager.SetStateUpdate(GameManagerState.Pause, () =>
+            {
+                if (_trackerService.IsCastleTracking() && _trackerService.IsTowerTracking() && _trackerService.IsPortalTracking())
+                {
+                    ResumeGame();
+                    stateManager.ChangeState(GameManagerState.Running);
+                }
+            });
+
+            stateManager.SetStateUpdate(GameManagerState.Idle, () =>
+            {
+                if (_trackerService.IsCastleTracking() && _trackerService.IsTowerTracking() && _trackerService.IsPortalTracking())
+                {
+                    //TODO: показать интерфейс, в котором игроку предлагается нажать на Play для старта игры
+                }
+                else
+                {
+                    //TODO: показать интерфейс, в котором игроку предлагается навестись на метки
+                }
+            });
+
+            stateManager.ChangeState(GameManagerState.Idle);
+
+            #endregion
         }
 
         private void Update()
         {
-            if (!_trackerService.IsCastleTracking() || !_trackerService.IsTowerTracking() || !_trackerService.IsPortalTracking())
-            {
-                PauseGame();
-            }
-
-           
+            stateManager.UpdateCurrentState();
         }
 
         public void CreateTree()
@@ -71,17 +114,20 @@ namespace CyberCountry
             _portal.ReloadGame();
             _castle.ReloadGame();
             _tower.ReloadGame();
-            
+            ResumeGame();
         }
 
-        public void StartGame()
+        public bool StartGame()
         {
             if (_trackerService.IsCastleTracking() && _trackerService.IsTowerTracking() && _trackerService.IsPortalTracking())
             {
                 print("StartGame");
-                Time.timeScale = 1;
+                ResumeGame();
                 _portal.Play(this);
+                stateManager.ChangeState(GameManagerState.Running);
+                return true;
             }
+            return false;
         }
 
         public void EndGame()
@@ -97,6 +143,13 @@ namespace CyberCountry
         {
             print("StopGame");
             Time.timeScale = 0;
+        }
+
+
+        public void ResumeGame()
+        {
+            print("ResumeGame");
+            Time.timeScale = 1;
         }
 
         public Transform CastlePos()
@@ -118,5 +171,6 @@ namespace CyberCountry
         {
             _castle.Heal();
         }
+
     }
 }
