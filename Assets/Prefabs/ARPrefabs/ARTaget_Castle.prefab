@@ -1,5 +1,44 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &684909127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 684909131}
+  - component: {fileID: 684909130}
+  m_Layer: 0
+  m_Name: Plane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &684909131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684909127}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.1270086, y: -0.017, z: 1.8877469}
+  m_LocalScale: {x: 0.33831415, y: 0.119166665, z: 0.4770163}
+  m_Children: []
+  m_Father: {fileID: 2371376918568868313}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &684909130
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684909127}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &204571317910246231
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,8 +208,9 @@ GameObject:
   - component: {fileID: 2371376918568868316}
   - component: {fileID: 2371376918568868317}
   - component: {fileID: 2371376918568868318}
+  - component: {fileID: 925859049}
   m_Layer: 0
-  m_Name: ARTagetCastle
+  m_Name: ARTaget_Castle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,6 +228,7 @@ Transform:
   m_LocalScale: {x: 8.391608, y: 8.391608, z: 8.391608}
   m_Children:
   - {fileID: 8548427434065004420}
+  - {fileID: 684909131}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -282,6 +323,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2371376918568868319}
   m_Mesh: {fileID: 0}
+--- !u!114 &925859049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371376918568868319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: defc1759bc9ba2848a9a04c42c3bfd54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackingObjID: castle
 --- !u!1 &7596086114420879204
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +464,7 @@ Transform:
   m_GameObject: {fileID: 8548427434064714660}
   m_LocalRotation: {x: -0, y: -0.7071067, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0.07, y: -0.007, z: 0}
-  m_LocalScale: {x: 0.123445, y: 0.12344498, z: 0.123445}
+  m_LocalScale: {x: 0.11, y: 0.11, z: 0.11}
   m_Children:
   - {fileID: 1677823440110339127}
   m_Father: {fileID: 2371376918568868313}

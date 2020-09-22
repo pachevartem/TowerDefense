@@ -25,19 +25,7 @@ namespace CyberCountry
 
         public override void Run()
         {
-            //_agent.SetDestination(_gameManager.CastlePos().position); //TODO: Навигация не работает, так как сетка статическая
-            _agent.enabled = false;
-            StartCoroutine(MovingToCastle());
-        }
-
-        private IEnumerator MovingToCastle()
-        {
-            while(Vector3.Distance(this.transform.position, _gameManager.CastlePos().position)>0.1f)
-            {
-                this.transform.position = Vector3.MoveTowards(this.transform.position, _gameManager.CastlePos().position, speed*Time.deltaTime);
-                yield return null;
-            }
-            this.transform.position = _gameManager.CastlePos().position;
+            _agent.SetDestination(_gameManager.CastlePos().position);           
         }
 
         public override void ReloadGame()
@@ -52,8 +40,12 @@ namespace CyberCountry
 
         void Update()
         {
-            //_anim.SetFloat("speed", _agent.velocity.magnitude);
-            _anim.SetFloat("speed", speed);
+            _anim.SetFloat("speed", _agent.velocity.magnitude);            
+        }
+
+        public override bool IsReachTarget()
+        {
+            return _agent.remainingDistance < 0.1f;
         }
     }
 }

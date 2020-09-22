@@ -71,17 +71,21 @@ namespace CyberCountry
                     ResumeGame();
                     stateManager.ChangeState(GameManagerState.Running);
                 }
+                else
+                {
+                    ProposeToTrackOnTags();
+                }
             });
 
             stateManager.SetStateUpdate(GameManagerState.Idle, () =>
             {
                 if (_trackerService.IsCastleTracking() && _trackerService.IsTowerTracking() && _trackerService.IsPortalTracking())
                 {
-                    //TODO: показать интерфейс, в котором игроку предлагается нажать на Play для старта игры
+                    _userInterface.ShowPressPlayPanel();
                 }
                 else
                 {
-                    //TODO: показать интерфейс, в котором игроку предлагается навестись на метки
+                    ProposeToTrackOnTags();
                 }
             });
 
@@ -93,6 +97,11 @@ namespace CyberCountry
         private void Update()
         {
             stateManager.UpdateCurrentState();
+        }
+
+        private void ProposeToTrackOnTags()
+        {
+            _userInterface.ShowTrackOnTagPanel();
         }
 
         public void CreateTree()

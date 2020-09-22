@@ -75,8 +75,7 @@ namespace CyberCountry
         public void ReloadGame()
         {
             Health = 100;            
-            Stop();
-            //process = StartCoroutine(Healing());
+            Stop();           
         }
 
         private float dt;
@@ -87,43 +86,18 @@ namespace CyberCountry
             DetectEnemy();
         }
 
-        //private IEnumerator Healing()
-        //{
-
-        //    while(true)
-        //    {
-        //        if (Health < 100)
-        //        {
-        //            dt += Time.deltaTime;
-
-        //            if (dt >= healDelay)
-        //            {
-        //                Heal();
-        //                dt = 0;
-        //            }
-
-        //        }
-
-        //        yield return null;
-        //    }
-
-            
-
-        //}
-
         private void DetectEnemy()
         {
             Enemy reachedEnemy = null;
 
             foreach (Enemy enemy in Enemy.All)
             {                
-
-                if(Vector3.Distance(this.transform.position, enemy.transform.position)<0.5f) //TODO: Magic number
+                if(enemy.IsReachTarget())
                 {
                     reachedEnemy = enemy;
                     Damage(10);
                     break;
-                }
+                }    
             }
 
             reachedEnemy?.ReachedCastle();       

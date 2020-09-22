@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2252928128669253300}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.119166665, y: 0.119166665, z: 0.119166665}
+  m_LocalScale: {x: 0.11, y: 0.11, z: 0.11}
   m_Children: []
   m_Father: {fileID: 320750621130447985}
   m_RootOrder: 0
@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 1978531506045404331}
   - component: {fileID: 7017718721344096313}
   - component: {fileID: 7866344310123150186}
+  - component: {fileID: 1394090134}
   m_Layer: 0
   m_Name: ARTarget_Portal
   m_TagString: Untagged
@@ -122,7 +123,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7155164528012869115}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -18.874619, y: 2.326, z: 5.2100143}
   m_LocalScale: {x: 8.391608, y: 8.391608, z: 8.391608}
   m_Children:
@@ -142,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: 92
+  mTrackableName: Portal
   mPreserveChildSize: 0
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/AR_Test.xml
@@ -221,3 +222,16 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7155164528012869115}
   m_Mesh: {fileID: 0}
+--- !u!114 &1394090134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7155164528012869115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: defc1759bc9ba2848a9a04c42c3bfd54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackingObjID: portal

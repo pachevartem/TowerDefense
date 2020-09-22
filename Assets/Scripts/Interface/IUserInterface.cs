@@ -7,6 +7,10 @@ namespace CyberCountry
         void ReloadGame();
         void CreateTree();
         void HealCastle();
+
+        void ShowTrackOnTagPanel();
+        void ShowPressPlayPanel();
+
         //
         IUserInterface Inject(IGameManager manager); //TODO: ы
     }

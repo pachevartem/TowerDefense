@@ -10,7 +10,7 @@ namespace CyberCountry
         public List<GameObject> Enemies; // тут префабы врагов
 
         private float _timetPortal = 0;
-        private float _delaySpawn = 1;
+        private float _delaySpawn = 2;
         private float _dtSpawn = 0;
         private float NextWave = 4; // Magic number
         private int _healthWave = 100; // default = 100;

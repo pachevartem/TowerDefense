@@ -15,6 +15,9 @@ namespace CyberCountry
         private Button _createTree;
         private Button _health;
 
+        private RectTransform _track_tag_panel;
+        private RectTransform _press_play_panel;
+
         private IGameManager _manager;
 
         private void FindButton()
@@ -27,10 +30,7 @@ namespace CyberCountry
                 {
                     case "play":
                         _play = o.GetComponent<Button>();
-                        _play.onClick.AddListener(StartGame);
-                        _play.onClick.AddListener(() => {
-                            
-                        });                        
+                        _play.onClick.AddListener(StartGame);                          
                         break;
                     case "sound":
                         _sound = o.GetComponent<Button>();
@@ -49,6 +49,12 @@ namespace CyberCountry
                         _health = o.GetComponent<Button>();
                         _health.onClick.AddListener(HealCastle);
                         break;
+                    case "track_tag":
+                        _track_tag_panel = o.GetComponent<RectTransform>();                        
+                        break;
+                    case "press_play":
+                        _press_play_panel = o.GetComponent<RectTransform>();                        
+                        break;
                     default:
                         break;
                 }
@@ -62,10 +68,18 @@ namespace CyberCountry
 
         public void StartGame()
         {
-            if(_manager.StartGame())
+            Debug.Log("Started!");
+
+            if (_manager.StartGame())
             {
+                _track_tag_panel.gameObject.SetActive(false);
+                _press_play_panel.gameObject.SetActive(false);
                 _play.gameObject.SetActive(false);
                 _reload.gameObject.SetActive(true);
+            }
+            else
+            {
+                Debug.Log("Game not started!");
             }
         }
 
@@ -93,6 +107,20 @@ namespace CyberCountry
         {
             _manager = manager;
             return this;
+        }
+
+        public void ShowTrackOnTagPanel()
+        {
+            _press_play_panel.gameObject.SetActive(false);
+            _track_tag_panel.gameObject.SetActive(true);
+            //Показать панель с предложением трекинга
+        }
+
+        public void ShowPressPlayPanel()
+        {
+            _track_tag_panel.gameObject.SetActive(false);
+            _press_play_panel.gameObject.SetActive(true);            
+            //Показать панель с предложением нажать на кнопку Play
         }
     }
 }

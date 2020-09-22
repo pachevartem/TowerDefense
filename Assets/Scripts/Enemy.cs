@@ -56,6 +56,7 @@ namespace CyberCountry
         public abstract void Run();
         public abstract void ReloadGame();
         public abstract void Stop();
+        public abstract bool IsReachTarget();
 
         #endregion
 
